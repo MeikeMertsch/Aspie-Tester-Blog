@@ -2,6 +2,7 @@
 ---
 layout: post
 title: Starting with Kotlin
+published: false
 tags: idiomatic_kotlin kotlin learning programming_language
 ---
 
