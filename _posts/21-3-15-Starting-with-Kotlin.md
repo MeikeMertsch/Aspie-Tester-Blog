@@ -13,7 +13,7 @@ In the past ten or so years, I have learned a good bunch of different languages,
 
 The first thing that I came across was a video:
 
-[![Kolin in three hours Youtube video](https://img.youtube.com/vi/F9UC9DY-vIU/0.jpg)](https://www.youtube.com/watch?v=F9UC9DY-vIU&amp;t=5191s)
+[![Kolin in three hours Youtube video](https://img.youtube.com/vi/F9UC9DY-vIU/0.jpg)](https://www.youtube.com/watch?v=F9UC9DY-vIU&amp)
 
 This was extremely useful. It explains how to get a project set up in IntelliJ and then plays with the things you can do with the language with fairly simple examples. After less than an hour I was able to solve simpler problems in Kotlin.
 
