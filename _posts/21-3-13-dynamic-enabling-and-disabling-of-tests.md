@@ -18,7 +18,7 @@ Over the last few years, we changed the concrete actions to disable tests quite 
 
 At first we went the typical way. Test frameworks come with an idiomatic way to disable a test. For JUnit that's annotations. Let's take an example:
 
-```
+```java
 @Disabled
 @Test
 void testSomeVeryImportantFuncationality() {
@@ -43,7 +43,7 @@ The annoying part of this approach is that we have to remove the annotation to c
 
 Since a while we went one step further: Instead of using the hard "Disabled" annotation, we switched to using simple [Tags](https://www.baeldung.com/junit-filtering-tests). For example
 
-```
+```java
 @Tag("LA-1234") 
 @Test 
 void testSomeVeryImportantFuncationality() { 
