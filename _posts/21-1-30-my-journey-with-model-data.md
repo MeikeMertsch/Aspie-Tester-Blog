@@ -39,7 +39,7 @@ On Swagger we need to hope for the patience and mercy of the developers to actua
 ## A long ride
 Over the last almost four years I have been writing a lot of code. As everyone else I started small and it took me a long time to get something half way useful together. Over the years I have learned a lot through code reviews by the programmers, through reading, scouting the web, and through conferences. I think I re-wrote the code several times by now. And with every new feature that comes with completely new models I make the same journey on a smaller scale again. I start with writing all fields explicitly first. Then I generalise more and more over time. Let's check another address example and let's assume I have some random customer already created somehow (note that this is pseudo code  and not correct Kotlin, I try to keep it as simple as possible) :
 
-```java
+{% highlight java %}
 // given
 val customer = someAlreadyCreatedCustomer
 val payload = AddressOf("John", "Doe", "Grand Plaza", "321", "12345", "Somewhere fun")
@@ -50,13 +50,13 @@ val result = api.send(customer, payload, addressEndpoint)
 // then
 assertThat(statusCode(result)).isEqualTo(200)
 assertThat(parse(result)).isEqualTo(payload)
-```
+{% endhighlight %}
 
 Usually I pull the exact values out of a test very early. Both variable names and method names give us the possibility of giving something meaning. If I tell you one variable name is randomName and another is nameWithSpaces, you probably know immediately what the relevance of those objects is. If the name doesn't explicitly say otherwise, I always assume I have a valid object.
 
 Once I started using some objects more often and manipulating different parts of the object, a simple method didn't suffice anymore. Like only changing the billing address of an organisation in one test but just the contact details in another. That's when I started using the Builder Pattern and pulled bigger objects into separate classes where I filled them with valid default values and could them then manipulate:
 
-```java
+{% highlight java %}
 // given
 val customer = someAlreadyCreatedCustomer
 val payloadWithSpecialStreet = DefaultAddress().withStreet("Grand Plaza").build()
@@ -67,8 +67,8 @@ val result = api.send(customer, payloadWithSpecialStreet, addressEndpoint)
 // then
 assertThat(statusCode(result)).isEqualTo(200)
 assertThat(parse(result)).isEqualTo(payload)
-```
-```java
+{% endhighlight %}
+{% highlight java %}
 class DefaultAddress() {
  
     firstName = "John"
@@ -87,14 +87,15 @@ class DefaultAddress() {
         return AddressOf(firstName, lastName, street, street_number, zip, city)
     }
 }
-```
+{% endhighlight %}
+
 
 ## Seeing the castle on the hill
 That worked well for a while. However, I noticed some patterns of things that I needed over and over again. And I really wanted to be able to write something like
 
-```
+{% highlight java %}
 address.sendToApi(user)
-```
+{% endhighlight %}
 
 Why? I didn't want anyone to need to care about how something is exactly sent to the server. When a user presses a button, they don't know the endpoints used. Similarly I thought those model classes were perfect for holding the information of how their data reaches the server.
 
@@ -102,7 +103,7 @@ So a lot of my classes with objects that were filled with default values got a n
 
 (While writing this, I realise that I actually forgot to use this in many places. I need to change that!)
 
-```java
+{% highlight java %}
 class DefaultAddress() extends Model<Address, AddressResponse>{
  
     firstName = "John"
@@ -128,8 +129,8 @@ class DefaultAddress() extends Model<Address, AddressResponse>{
     inherited fun retrieveObject(response: Response): AddressResponse {
         return wayOfDeserialisingThe(response)
 }
-```
-```java
+{% endhighlight %}
+{% highlight java %}
 class Model() <RequestClass, ResponseClass>{
  
     abstract getEndpoint(): String
@@ -142,8 +143,8 @@ class Model() <RequestClass, ResponseClass>{
         api.send(user, build(), getEndpoint())
     }  
 }
-```
-```java
+{% endhighlight %}
+{% highlight java %}
 // given
 val customer = someAlreadyCreatedCustomer
  
@@ -153,7 +154,7 @@ val result = DefaultAddress().withStreet("Grand Plaza").sendToApi(customer)
 // then
 assertThat(statusCode(result)).isEqualTo(200)
 assertThat(parse(result)).isEqualTo(payload)
-```
+{% endhighlight %}
 
 Yes, the net amount of code is now bigger. But by this state I usually have a ton more than one single test that need all sorts of different configurations to be sent to the server. And the code in the most prominent place, the actual test is more descriptive of the relevant parts and most often shorter, too.
 
