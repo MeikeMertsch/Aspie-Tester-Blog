@@ -18,23 +18,23 @@ Over the last few years, we changed the concrete actions to disable tests quite 
 
 At first we went the typical way. Test frameworks come with an idiomatic way to disable a test. For JUnit that's annotations. Let's take an example:
 
-```java
+{% highlight java %}
 @Disabled
 @Test
 void testSomeVeryImportantFuncationality() {
     // test code
 } 
-```
+{% endhighlight %}
 
 It causes the test to be disabled fully. As long as a test has such an annotation, it simply won't run. For starters that was enough. We did add one piece of information immediately. In JUnit 5 you can add a reason to a disabling annotation. So we used it to mark tests with the respective ticket number. It makes the tests easily searchable and if we find a test which is disabled we can find out more about the reasons by checking the ticket. Usually we also put a note in the ticket that there is a connected test.
 
-```java
+{% highlight java %}
 @Disabled("LA-1234")
 @Test
 void testSomeVeryImportantFuncationality() {
     // test code
 } 
-```
+{% endhighlight %}
 
 The annoying part of this approach is that we have to remove the annotation to check if the test is eventually successful. Anyone working with the breaking reasons cannot simply run something on Jenkins but has to go through the process of cloning the repository and change the code to try it out.
 
@@ -43,13 +43,13 @@ The annoying part of this approach is that we have to remove the annotation to c
 
 Since a while we went one step further: Instead of using the hard "Disabled" annotation, we switched to using simple [Tags](https://www.baeldung.com/junit-filtering-tests). For example
 
-```java
+{% highlight java %}
 @Tag("LA-1234") 
 @Test 
 void testSomeVeryImportantFuncationality() { 
 	// test code 
 } 
-```
+{% endhighlight %}
 
 Now the tests were not disabled in JUnit, but we could tell the build tool Gradle to filter out tests with specific tags. And to make things easier, we stored the configuration in our Organization Configuration Service. That service got a new configuration type Test Automation Configuration and now stored the information of what to filter out.
 
@@ -92,14 +92,14 @@ I am personally very happy with the solution and what it brings us. Fewer PRs ne
 
 There is one more thing I want to do: Sometimes only one or two sets of parameters in [parameterized tests](https://www.baeldung.com/parameterized-tests-junit-5) need to be disabled. For the moment that means commenting out some parameter sets or setting up more or less readable Assumptions like so:
 
-```java
+{% highlight java %}
 @MethodSource(DIFFERENT_USERS) 
 @ParameterizedTest 
 void testSomeVeryImportantFuncationality(User user) { 
 	assumeFalse(MANUFACTURER.equals(user.role()), "LA-1234"); 
 	// test code 
 } 
-```
+{% endhighlight %}
 
 Since we have the TestInfo object, we should be able to use it to disable the exact set instead of disabling the whole test or needing to use a different approach. If that works, then we can do much more than we ever could.
 
