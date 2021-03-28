@@ -17,7 +17,7 @@ Given a customer with mail address tcore.fortum+something@gmail.com and password
 When I add an address John, Doe, Grand Plaza, 321, 12345, Somewhere fun
  
 Then adding should have succeeded
-and the address is John, Doe, Grand Plaza, 321, 12345, Somewhere fun
+And the address is John, Doe, Grand Plaza, 321, 12345, Somewhere fun
 {% endhighlight %}
 
 Of course it's easy to say, "but we will likely test with different variants of this and have the actual data in a table with the different examples". Ok, sure, this can be a little more readable. But if you look at this test you will still not really see what exactly changed and what is important unless you boil it really far down to something along the lines of 
@@ -28,7 +28,7 @@ Given a random customer
 When I add a random address
  
 Then I should get a success
-and the address is correct.
+And the address is correct.
 {% endhighlight %}
 
 All the clutter is now gone. And you can see without any effort what the test is about, even if it doesn't have a title. 
