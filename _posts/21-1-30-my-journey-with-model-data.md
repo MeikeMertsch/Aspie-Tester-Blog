@@ -5,6 +5,8 @@ published: true
 tags: learning test_automation learnings automation junit readability information
 ---
 
+What I do to keep my tests readable.
+
 ## A quest for clarity and readability
 
 We all know the situation when we want to send a simple call to the backend, be it via Swagger, automation code, or via tools like Postman and Insomnia. And we need to send an object with a bunch of parameters. If we get lucky it's just a few parameters that we are very familiar with, like the fields of a billing address on a customer. But it could be a more complicated object like an organisation, that might have some more or less deeply nested sub-objects like contact information, billing data and delivery addresses at once.
