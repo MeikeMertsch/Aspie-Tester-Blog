@@ -10,7 +10,7 @@ tags: learning randomization privileges learnings automation roles access
 Does your product have a way to login as an admin? When you test things, or work with it on a daily basis, who do you do it as? An admin?
 
 
-# Roles, Privileges, and Access
+## Roles, Privileges, and Access
 
 In Plugsurfing we have two restrictive systems to tell what you should or shouldn't see or be able to do in our platform.
 
@@ -21,7 +21,7 @@ The second is our system of organisation access which determines which data you 
 So back to the first question: Who do you want to be today?
 
 
-# A Realization
+## A Realization
 
 At this point I am working for more than four years for Fortum. And most of that time I have been using our internal admins first and foremost to test functionality. Obviously that is the role and access level that allows me to do everything and see everything so it is a good user to check if a feature works. Or is it?
 
@@ -36,7 +36,7 @@ If a case failed I would see if both organisations would for example fail on the
 Recently I came across some tests that were exclusively using admins from the internal organisation for verification of functionality. And it struck me. 
 
 
-# The Way Forward
+## The Way Forward
 
 This was a pretty useless exercise. What value does it bring if any non-internal feature is tested with an admin? Insignificant. Yes, it tells me if the action can generally be done. But for the customer it has no practical value if an admin can do something if no customer can. We don't make any money off our staff in that way.
 
