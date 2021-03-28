@@ -11,14 +11,14 @@ We all know the situation when we want to send a simple call to the backend, be 
 
 When describing a test, most exact values are unimportant for a huge percentage of test cases. Usually we only need valid data for most or even all values. And if we provide all data in the test description, it easily distracts from the relevant information. Let's take an example:
 
-```
+{% highlight java %}
 Given a customer with mail address tcore.fortum+something@gmail.com and password test 
  
 When I add an address John, Doe, Grand Plaza, 321, 12345, Somewhere fun
  
 Then adding should have succeeded
 and the address is John, Doe, Grand Plaza, 321, 12345, Somewhere fun
-```
+{% endhighlight %}
 
 Of course it's easy to say, "but we will likely test with different variants of this and have the actual data in a table with the different examples". Ok, sure, this can be a little more readable. But if you look at this test you will still not really see what exactly changed and what is important unless you boil it really far down to something along the lines of 
 
