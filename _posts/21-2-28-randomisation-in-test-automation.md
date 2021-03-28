@@ -43,8 +43,7 @@ A second thought about a possible mistake I made was to not use a randomisation 
 I didn't want to remove the randomisation altogether. The effect of distinguishable data is useful in too many cases. But I wanted more control of my randomisation. I wanted data that looked realistic. It demoes better, too:
 
 Before and After:
-![Before the new Randomization]({{ site.baseurl }}/images/Screenshot%202021-02-22%20at%2020.02.07.png) 
-![After the new Randomization]({{ site.baseurl }}/images/Screenshot%202021-02-22%20at%2020.02.58.png)
+![Before the new Randomization]({{ site.baseurl }}/images/Screenshot%202021-02-22%20at%2020.02.07.png) ![After the new Randomization]({{ site.baseurl }}/images/Screenshot%202021-02-22%20at%2020.02.58.png)
 
 So I decided to invest a little time into a customised Random class. With a few dozens random adjectives and random nouns, as well as random first and last names and some UUID magic (and a few other things with just a minimum of logic) my test data started to look almost like real data. I still "tag" the data for the automation with a specific prefix and the time of testing to make sure it's recognisable as data from the automation and for the clean up to find the data that can be removed[^4].
 
