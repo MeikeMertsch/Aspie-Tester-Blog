@@ -2,7 +2,7 @@
 layout: post
 title: Dynamic Enabling and Disabling of Tests
 published: true
-tags: learning test_automation ignore disable disabled learnings automation junit jenkns gradle
+tags: learning test_automation ignore disable disabled learnings automation junit jenkins gradle
 ---
 
 Or: How we treat tests that point to a problem which won't get fixed immediately.
