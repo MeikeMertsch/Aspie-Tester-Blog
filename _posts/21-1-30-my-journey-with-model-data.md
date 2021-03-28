@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: My journey with Model data
