@@ -14,7 +14,7 @@ In Plugsurfing we disable tests that point to known issues unless they can and w
 Over the last few years, we changed the concrete actions to disable tests quite a bit.
 
 
-# Step 1 - Disabling tests
+## Step 1 - Disabling tests
 
 At first we went the typical way. Test frameworks come with an idiomatic way to disable a test. For JUnit that's annotations. Let's take an example:
 
@@ -39,7 +39,7 @@ void testSomeVeryImportantFuncationality() {
 The annoying part of this approach is that we have to remove the annotation to check if the test is eventually successful. Anyone working with the breaking reasons cannot simply run something on Jenkins but has to go through the process of cloning the repository and change the code to try it out.
 
 
-# Step 2 - Tagging tests
+## Step 2 - Tagging tests
 
 Since a while we went one step further: Instead of using the hard "Disabled" annotation, we switched to using simple [Tags](https://www.baeldung.com/junit-filtering-tests). For example
 
@@ -66,7 +66,7 @@ A second downside is that by using Gradle, JUnit never got word that the exclude
 And a third downside was that removing the Disabled annotation meant that even the failing tests would now run locally, because Jenkins was taking care of the config and locally there was no Jenkins involved, so JUnit wouldn't know what to exclude.
 
 
-# Step 3 - Fully dynamic enabling and disabling of tests
+## Step 3 - Fully dynamic enabling and disabling of tests
 
 To make all of the pains with the previous steps go away, we proceeded to engage in a fair amount of Vodoo. Ok. No vodoo. But we used some neat little tricks to solve the issues at hand.
 
@@ -86,7 +86,7 @@ But wait. Aren't there any downsides?
 
 Of course there are. At least one. This method is using [reflection](https://www.baeldung.com/java-reflection) to find the tests. So we have to be mindful when changing test names and test class names. But so far nothing really stands in our way.
 
-# The future - A conclusion
+## The future - A conclusion
 
 I am personally very happy with the solution and what it brings us. Fewer PRs need to be taken care of to just flip a switch. It also means that the disabled tests are now very explicit and we can even tell the automation to exactly run all of the disabled tests to see if something has been fixed without anyone noticing or re-enabling the test.
 
